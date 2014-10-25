@@ -48,11 +48,7 @@ define(['jquery', 'figure'], function($, Figure){
             classMethod = options && options.clear ? 'removeClass' : 'addClass';
 
         for(var i = 0; i < figureCoords.length; i++){
-            for(var j = 0; j < figureCoords.length; j++){
-                if(figureCoords[i][j].active){
-                    this.fieldCells[figureCoords[i][j].y][figureCoords[i][j].x].cell[classMethod]('active');
-                }
-            }
+            this.fieldCells[figureCoords[i].y][figureCoords[i].x].cell[classMethod]('active');
         }
     };
 

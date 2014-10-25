@@ -79,16 +79,17 @@ define(['jquery'],function($){
     };
 
     Figure.prototype.getCoordinates = function(){
-        var coordinates = new Array(this.figure.points.length);
+        var coordinates = [];
 
-        for(var i = 0; i < coordinates.length; i++){
-            coordinates[i] = new Array(this.figure.points.length);
-            for(var j = 0; j < coordinates[i].length; j++){
-                coordinates[i][j] = {
-                    active : this.figure.points[i][j],
-                    x : this.figure.topLeft.x + j,
-                    y : this.figure.topLeft.y + i
-                };
+        for(var i = 0; i < this.figure.points.length; i++){
+            for(var j = 0; j < this.figure.points[i].length; j++){
+                if(this.figure.points[i][j]){
+                    coordinates.push({
+                        //active : this.figure.points[i][j],
+                        x : this.figure.topLeft.x + j,
+                        y : this.figure.topLeft.y + i
+                    });
+                }
             }
         }
         return coordinates;

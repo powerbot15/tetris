@@ -1,3 +1,9 @@
-/**
- * Created by oleh on 25.10.14.
- */
+define(['jquery'],function($){
+
+    function Figure(){
+
+    }
+
+    return Figure;
+
+});

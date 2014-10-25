@@ -1,0 +1,14 @@
+{
+  "name": "tetris",
+  "version": "0.0.1",
+  "homepage": "https://github.com/powerbot15/tetris",
+  "authors": [
+    "oleh.kastornov <powerbot15@gmail.com>"
+  ],
+  "description": "Old Well Tetris",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "requirejs": "~2.1.15"
+  }
+}

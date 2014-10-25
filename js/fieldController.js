@@ -39,9 +39,13 @@ define(['jquery', 'figure'], function($, Figure){
         }
     };
 
-    FieldController.prototype.paintFigure = function(clear){
+    FieldController.prototype.clearFigure = function(){
+      this.paintFigure({clear : true});
+    };
+
+    FieldController.prototype.paintFigure = function(options){
         var figureCoords = this.figure.getCoordinates(),
-            classMethod = clear ? 'removeClass' : 'addClass';
+            classMethod = options && options.clear ? 'removeClass' : 'addClass';
 
         for(var i = 0; i < figureCoords.length; i++){
             for(var j = 0; j < figureCoords.length; j++){

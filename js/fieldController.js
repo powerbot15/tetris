@@ -23,14 +23,9 @@ define(['jquery', 'figure'], function($, Figure){
             }
         }
         this.refreshField();
-        //for(var i = 0; i < 10; i++){
-        //    this.fieldCells[0][i].cell.addClass('active');
-        //}
-        //for(var i = 0; i < 20; i++){
-        //    this.fieldCells[i][0].cell.addClass('active');
-        //}
 
     };
+
     FieldController.prototype.refreshField = function(){
         for(var i = 0; i < this.fieldCells.length; i++){
             for(var j = 0; j < this.fieldCells[i].length; j++){
@@ -43,16 +38,19 @@ define(['jquery', 'figure'], function($, Figure){
             }
         }
     };
-    FieldController.prototype.paintFigure = function(){
-        var figureCoords = this.figure.getCoordinates();
+
+    FieldController.prototype.paintFigure = function(clear){
+        var figureCoords = this.figure.getCoordinates(),
+            classMethod = clear ? 'removeClass' : 'addClass';
 
         for(var i = 0; i < figureCoords.length; i++){
             for(var j = 0; j < figureCoords.length; j++){
                 if(figureCoords[i][j].active){
-                    this.fieldCells[figureCoords[i][j].y][figureCoords[i][j].x].cell.addClass('active');
+                    this.fieldCells[figureCoords[i][j].y][figureCoords[i][j].x].cell[classMethod]('active');
                 }
             }
         }
     };
+
     return FieldController;
 });

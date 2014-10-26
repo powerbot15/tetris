@@ -1,6 +1,11 @@
+.wrapper{
+    width:60%;
+    margin: auto;
+    text-align: center;
+}
 .active{
-    border:1px solid grey;
-    background-color: aqua;
+    border:1px solid #BBBBBB;
+    background-color: #80D730;
 }
 .field{
     background-color: antiquewhite;
@@ -9,5 +14,19 @@
 .cell{
     width:25px;
     height:25px;
-    border:1px solid grey;
+    border:1px solid #BBBBBB;
+}
+.field-container, .user-information{
+    display: inline-block;
+    vertical-align: top;
+}
+.user-information{
+    font-size: 36px;
+}
+.scores > .value{
+    color:#E53EBE;
+    font-weight: bold;
+}
+.speed > .value{
+    color:#9F2D28;
 }

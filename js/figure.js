@@ -91,6 +91,21 @@ define(['jquery'],function($){
 
     };
 
+    Figure.prototype.resetRotate = function(){
+        var length = this.figure.points.length;
+        for(var i=0;i<length;i++){
+            for(var j=0;j<length;j++){
+                this.rotateMatrix[i][j] = this.figure.points[j][length-1-i];
+            }
+        }
+        for(var i = 0; i < length; i++){
+            for(var j = 0; j < length; j++){
+                this.figure.points[i][j] = this.rotateMatrix[i][j];
+            }
+        }
+
+    };
+
     Figure.prototype.getCoordinates = function(){
         var coordinates = [];
 

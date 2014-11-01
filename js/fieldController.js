@@ -90,22 +90,34 @@ define(['jquery', 'figure'], function ($, Figure){
             }
 
         }
+        if(direction === "rotate"){
+            this.figure.rotate();
+            coordinatesToCheck = this.figure.getCoordinates();
+        }
         for (var i = 0; i < this.fieldCells.length; i++){
             for(var j = 0; j < this.fieldCells[i].length; j++){
                 for(var k = 0; k < coordinatesToCheck.length; k++){
                     if(this.fieldCells[coordinatesToCheck[k].y][coordinatesToCheck[k].x].active){
+                        if(direction === 'rotate'){
+                            this.figure.resetRotate();
+                        }
                         this.paintFigure();
-                        //if(direction === 'down'){
-                        //    this.figure = new Figure();
-                        //    return false;
-                        //}
+
                         return false;
                     }
                 }
             }
         }
+        if(direction === 'rotate'){
+            this.figure.resetRotate();
+        }
         this.paintFigure();
         return true;
+    };
+
+    FieldController.prototype.canFigureRotate = function(){
+        //this.figure.rotate();
+
     };
 
     FieldController.prototype.checkCollectedLines = function (){
@@ -176,40 +188,42 @@ define(['jquery', 'figure'], function ($, Figure){
         var self = this;
         $('body').on('keydown', function(event){
             if(event.keyCode == 37){
-                if(self.canFigureMove('left')){
-                    self.clearFigure();
-                    self.figure.move('left');
-                    self.paintFigure();
+                if(this.canFigureMove('left')){
+                    this.clearFigure();
+                    this.figure.move('left');
+                    this.paintFigure();
                 }
             }
             if(event.keyCode == 39){
-                if(self.canFigureMove('right')){
-                    self.clearFigure();
-                    self.figure.move('right');
-                    self.paintFigure();
+                if(this.canFigureMove('right')){
+                    this.clearFigure();
+                    this.figure.move('right');
+                    this.paintFigure();
                 }
             }
             if(event.keyCode == 40){
-                if(self.canFigureMove('down')){
-                    self.clearFigure();
-                    self.figure.move('down');
-                    self.paintFigure();
+                if(this.canFigureMove('down')){
+                    this.clearFigure();
+                    this.figure.move('down');
+                    this.paintFigure();
                 }
                 else{
-                    self.checkCollectedLines();
-                    self.refreshField();
-                    self.figure = new Figure();
-                    self.paintFigure();
+                    this.checkCollectedLines();
+                    this.refreshField();
+                    this.figure = new Figure();
+                    this.paintFigure();
                 }
 
             }
             if(event.keyCode == 38){
-                self.clearFigure();
-                self.figure.rotate();
-                self.paintFigure();
+                if(this.canFigureMove('rotate')){
+                    this.clearFigure();
+                    this.figure.rotate();
+                    this.paintFigure();
+                }
             }
 
-        });
+        }.bind(this));
     };
 
     FieldController.prototype.gameCycleStart = function (){
